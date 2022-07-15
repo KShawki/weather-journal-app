@@ -1,5 +1,5 @@
 // Setup empty JS object to act as endpoint for all routes
-projectData = {};
+let projectData = {};
 
 // Require Express to run server and routes
 const express = require('express'),
@@ -22,14 +22,7 @@ app.use(express.static('website'));
 
 // Setup Server
 const PORT = process.env.port || 9000;
-
-app.listen(PORT, () => console.log(`Server running on port: http://localhost:${PORT} ..`));
-
-// Get Data from API
-app.use("/addData", addData);
-app.use("/sendData", sendData);
-
-
+app.listen(PORT, () => console.log(`Server running: http://localhost:${PORT} ..`));
 
 // Helper Function
 const addData = (request, response) => {
@@ -43,6 +36,14 @@ const addData = (request, response) => {
   response.send(projectData);
 }
 
-sendData = (request, response) => {
+const sendData = (request, response) => {
   request.send(projectData);
 }
+
+
+// Get Data from API
+app.use("/addData", addData);
+app.use("/sendData", sendData);
+
+
+
