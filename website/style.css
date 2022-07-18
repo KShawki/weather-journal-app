@@ -140,6 +140,39 @@ body {
 	color: #fff;
 }
 
+.results {
+	width: 100%;
+	height: auto;
+	padding: 20px 10px;
+	border: 2px solid #ccc;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+/* .res-2 {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border: 1px solid black;
+	width: 100%;
+	margin-top: 30px;
+	height: 50px;
+} */
+
+
+/* .res-2 div {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+} */
+
+.d-none {
+	display: none;
+}
+
 @media (max-width: 700px) {
 	#root {
 		flex-direction: column;
@@ -176,5 +209,4 @@ body {
 	.head {
 		text-align: center;
 	}
-
 }

@@ -26,23 +26,26 @@ app.listen(PORT, () => console.log(`Server running: http://localhost:${PORT} ..`
 
 // Helper Function
 const addData = (request, response) => {
-  let data = request.body;
-  console.log(`Server side data ${data}`);
 
-  projectData["date"] = data.date; 
-  projectData["temp"] = data.temp; 
-  projectData["feeling"] = data.feeling; 
+  // console.log(`Server side data ${request.body}`);
 
-  response.send(projectData);
+  projectData["date"] = request.body.date; 
+  projectData["temp"] = request.body.temp; 
+  projectData["address"] = request.body.address;
+  projectData["feeling"] = request.body.feeling; 
+
+  // response.send(projectData);
+  response.end(); 
 }
 
 const sendData = (request, response) => {
   response.send(projectData);
 }
 
-// Get Data from API
-app.use("/addData", addData);
-app.use("/getData", sendData);
+// Post & Get Data from API
+app.use("/add", addData);
+app.use("/get", sendData);
+
 
 
 
