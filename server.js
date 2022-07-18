@@ -3,8 +3,8 @@ let projectData = {};
 
 // Require Express to run server and routes
 const express = require('express'),
-      cors = require('cors'),
-      bodyParser = require('body-parser'); 
+cors = require('cors'),
+bodyParser = require('body-parser'); 
 
 // Start up an instance of app
 const app = express(); 
@@ -37,13 +37,12 @@ const addData = (request, response) => {
 }
 
 const sendData = (request, response) => {
-  request.send(projectData);
+  response.send(projectData);
 }
-
 
 // Get Data from API
 app.use("/addData", addData);
-app.use("/sendData", sendData);
+app.use("/getData", sendData);
 
 
 
