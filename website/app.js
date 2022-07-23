@@ -2,7 +2,8 @@
 const reset = document.querySelector("#reset");
 const generate = document.querySelector('#generate');
 
-/* Personal API Key for OpenWeatherMap API */
+/* Personal API and url Key for OpenWeatherMap API */
+const URL = `https://api.openweathermap.org/data/2.5/weather?zip=`;
 const API_KEY = 'd049ed25ecfb2a1d010c09c7c67a6402&units=metric'
 
 // Create a new date instance dynamically with JS
@@ -10,65 +11,81 @@ let date = new Date();
 let newDate = `${date.getMonth()}.${date.getDate()}.${date.getFullYear()}`
 
 // Event listener to add function to existing HTML DOM element
-generate.addEventListener( "click", async () => {
-  var zipCode = document.querySelector("#zip").value;
-  var feeling = document.querySelector("#feeling").value;
-  
-    const URL = `https://api.openweathermap.org/data/2.5/weather?zip=${zipCode},&appid=${API_KEY}`;
-    const response = await fetch(URL).then((result) => result.json());
+generate.addEventListener("click", performAction);
 
-  // Other information for redesign UI After Project Submit.. {NOT COMPLETED}
-    var city = await response.name;
-    var country = await response.sys.country;
-    var address = `${city}, ${country}`;
-    var temp = await response.main.temp;
-    var humidity = await response.main.humidity;
-    var feels_like = await response.main.feels_like;
+/* Function called by Event Listener */
+const performAction = (event) => {
+    var zipCode = document.querySelector("#zip").value;
+    var feeling = document.querySelector("#feeling").value;
 
-    
-  // Check Results
-    // console.log(`zipCode = ${zipCode}`);
-    // console.log(`Feeling = ${feeling}`);
-    // console.log(address);
-    // console.log(temp);
-    // console.log(humidity);
-    // console.log(feels_like);
-    // console.log(response);
-
-  /* Function to POST data */
-  await fetch("/add", {
-    method: "POST",
-    credentials: "same-origin",
-    headers: { "Content-type": "Application/JSON" },
-    body: JSON.stringify({
-      newDate,
-      temp,
-      feeling,
-      address,
-      humidity,
-      feeling,
-    }),
-  });
-
-  /* Function to GET Project Data */
-  const result = await fetch("/get").then( respnose => {response.json()});
-  
-  alert(result);
-
-  document.querySelector(".main-content").classList.add("d-none");
-  document.querySelector(".results").classList.remove("d-none");
-
-  // document.querySelector("#country").innerHTML = `${data.address}`;
-  document.querySelector("#content").innerHTML = `i'm Feeling => ${data.feeling}`;
-  document.querySelector("#date").innerHTML = `Date => ${data.date}`;
-  document.querySelector("#temp").innerHTML = `Temp => ${data.temp}`;
-}); 
+    if (zipCode == '') {
+      alert("Enter Valid Zip Code !")
+      resetData(); 
+    } else {
+      openWeatherMap(`${URL}&appid=${API_KEY}`)
+        .then(function (postData) {
+          // Add data to POST request
+          postData("/add", {
+            date: newDate,
+            temp: userData.main.temp,
+            feeling
+          });
+        })
+        .then(updateUI());
+    }
+    resetData(); 
+};
 
 
-// Reset Button 
-reset.addEventListener("click", ()=> {
-  document.querySelector("#zip").value = "";
-  document.querySelector("#feeling").value = "";
-})
+const openWeatherMap = async(link) => {
+  const respnose = await fetch (link);
+  try {
+    const data = await res.JSON();
+    return data;  
+  } catch (error) {
+    console.error(`Error: ${error}!!!`);
+  }
+}
 
+/* Function to POST data */
+const postData = async (url = '', data={}) => {
+    const request = await fetch("/add", {
+      method: "POST",
+      credentials: "same-origin",
+      headers: { "Content-type": "Application/JSON" },
+      body: JSON.stringify({
+        newDate,
+        temp,
+        feeling,
+        address,
+        humidity,
+        feeling,
+      }),
+    });
 
+  const newData = await reqest.json();
+  return newData;
+}
+
+/* Function to GET Project Data */
+const result = await fetch("/get").then((respnose) => {
+  response.json();
+});
+
+const updateUI = () => {
+  const request = await fetch('/all');
+  try {
+    const allData = await request.json()
+    // show icons on the page
+    icons.forEach(icon => icon.style.opacity = '1');
+    // update new entry values
+    document.getElementById('date').innerHTML = allData.date;
+    document.getElementById('temp').innerHTML = allData.temp;
+    document.getElementById('content').innerHTML = allData.content;
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+// Reset button content 
+reset.addEventListener("click", console.log("clicked"));

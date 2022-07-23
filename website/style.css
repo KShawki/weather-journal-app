@@ -140,37 +140,78 @@ body {
 	color: #fff;
 }
 
-.results {
-	width: 100%;
-	height: auto;
-	padding: 20px 10px;
-	border: 2px solid #ccc;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
-}
-
-/* .res-2 {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	border: 1px solid black;
-	width: 100%;
-	margin-top: 30px;
-	height: 50px;
-} */
-
-
-/* .res-2 div {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	text-align: center;
-} */
-
 .d-none {
 	display: none;
+}
+
+.d-flex {
+	display: flex;
+}
+
+.results {
+	width: 100%;
+	height: 30px;
+}
+
+.res-head {
+	justify-content: center;
+} 
+
+.res-head button {
+	border: none;
+	background-color: rgb(227, 227, 227);
+	width: 50px;
+	height: 50px;
+	border-radius: 5px;
+}
+
+.res-head button img {
+	width: 60%;
+	margin: auto;
+	padding: auto;
+} 
+
+.res-title {
+	align-items: center;
+}
+
+.res-title #country {
+	margin-left: 4px;
+	align-self: center;
+	font-weight: 400;
+	color: #677489;
+}
+
+.w-status {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 20px;
+}
+
+.feel {
+	margin-top: 20px;
+	text-align: center;
+}
+
+.feel span {
+	color:#0876b2;
+	font-weight: 600;
+}
+
+.CopyRights {
+	width: 100%;
+	text-align: center;
+	position: absolute;
+	bottom: 75px;
+	font-size: 14px;
+}
+
+.CopyRights a {
+	text-decoration: none;
+	color: #333;
+	font-weight: 700;
 }
 
 @media (max-width: 700px) {
