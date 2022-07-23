@@ -150,7 +150,6 @@ body {
 
 .results {
 	width: 100%;
-	height: 30px;
 }
 
 .res-head {
@@ -171,6 +170,16 @@ body {
 	padding: auto;
 } 
 
+
+.deg h1{
+	color: #444;
+	font-size: 80px;
+}
+
+.deg span {
+	font-size: 30px;
+}
+
 .res-title {
 	align-items: center;
 }
@@ -190,13 +199,28 @@ body {
 	margin-top: 20px;
 }
 
+.date {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.date img {
+	width: 12%;
+}
+
+.date #date {
+	margin-left: 5px;
+}
+
 .feel {
 	margin-top: 20px;
 	text-align: center;
 }
 
 .feel span {
-	color:#0876b2;
+	color:#0aa0f3;
 	font-weight: 600;
 }
 
@@ -205,13 +229,17 @@ body {
 	text-align: center;
 	position: absolute;
 	bottom: 75px;
-	font-size: 14px;
+	font-size: 14px;	
 }
 
 .CopyRights a {
 	text-decoration: none;
 	color: #333;
 	font-weight: 700;
+}
+
+.CopyRights img {
+	width: 15px;
 }
 
 @media (max-width: 700px) {
