@@ -1,11 +1,10 @@
 // Setup empty JS object to act as endpoint for all routes
 let projectData = {};
-let data = [];
 
 // Require Express to run server and routes
 const express = require('express'),
-cors = require('cors'),
-bodyParser = require('body-parser'); 
+      cors = require('cors'),
+      bodyParser = require('body-parser'); 
 
 // Start up an instance of app
 const app = express(); 
@@ -27,25 +26,17 @@ app.listen(PORT, () => console.log(`Server running: http://localhost:${PORT} ..`
 
 // Helper Function
 const addData = (request, response) => {
-
-  // console.log(`Server side data ${request.body}`);
-
-  projectData["date"] = request.body.date; 
-  projectData["temp"] = request.body.temp; 
-  projectData["address"] = request.body.address;
-  projectData["feeling"] = request.body.feeling; 
-
-  // response.send(projectData);
+  projectData = request.body;
   response.end(); 
+  console.log(`Server side data ${projectData}`);
 }
 
 const sendData = (request, response) => {
   response.send(projectData);
 }
-
 // Post & Get Data from API
-app.use("/add", addData);
-app.use("/get", sendData);
+app.post("/addData", addData);
+app.get("/getData", sendData);
 
 
 

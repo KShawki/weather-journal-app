@@ -96,8 +96,8 @@ body {
 	height: 140px;
 }
 
-.inputs input:is(:focus,){
-  border: 1.25px solid #0aa0f3;
+.inputs input:is(:focus){
+  border: 1.5px solid #0aa0f3;
 }
 .inputs input::placeholder{
   color: #bfbfbf;
