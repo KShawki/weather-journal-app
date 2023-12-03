@@ -33,16 +33,6 @@ const getWeatherData = async (URL) => {
 /* Function to POST data */
 const postWeatherData = async(URL="", data={}) => {
 
-  /*
-    Solutuin Steps:
-      1.
-      2.
-      3.
-      4.
-      5.
-      6.
-    */
-
   const response = await fetch (URL, {
     method: "POST",
     credentials: "same-origin",
